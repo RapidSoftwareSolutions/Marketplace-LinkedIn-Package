@@ -1,0 +1,175 @@
+{
+    "getAccessToken": {
+        "url": "https://www.linkedin.com/oauth/v2/accessToken",
+        "method": "POST",
+        "args": {
+            "code": "$code",
+            "redirectUri": "$redirect_uri",
+            "clientId": "$client_id",
+            "clientSecret": "$client_secret"
+        }
+    },
+    "getProfileData": {
+        "url": "https://api.linkedin.com/v1/people/~:(:fields)?format=json",
+        "method": "GET",
+        "args": {
+            "accessToken": "$!access-token",
+            "fields": "!fields",
+            "profileLanguage": "profile-language"
+        }
+    },
+    "createSharedContent": {
+        "url": "https://api.linkedin.com/v1/people/~/shares?format=json",
+        "method": "POST",
+        "args": {
+            "accessToken": "$!access-token",
+            "comment": "$comment",
+            "visibilityCode": "$visibility.code",
+            "contentTitle": "$content.title",
+            "contentDescription": "content.description",
+            "contentSubmittedUrl": "$content.submitted-url",
+            "contentSubmittedImageUrl": "content.submitted-image-url"
+        }
+    },
+    "checkCompanySharing": {
+        "url": "https://api.linkedin.com/v1/companies/:companyId/is-company-share-enabled?format=json",
+        "method": "GET",
+        "args": {
+            "accessToken": "$!access-token",
+            "companyId": "$!companyId"
+        }
+    },
+    "checkMemberIsCompanyAdministrator": {
+        "url": "https://api.linkedin.com/v1/companies/:id/relation-to-viewer/is-company-share-enabled?format=json",
+        "method": "GET",
+        "args": {
+            "accessToken": "$!access-token",
+            "companyId": "$!id"
+        }
+    },
+    "getCompaniesWhereUserAdministrator": {
+        "url": "https://api.linkedin.com/v1/companies?format=json&is-company-admin=true",
+        "method": "GET",
+        "args": {
+            "accessToken": "$!access-token",
+            "start": "start",
+            "count": "count"
+        }
+    },
+    "getCompanyProfile": {
+        "url": "https://api.linkedin.com/v1/companies/:id:(:fields)?format=json",
+        "method": "GET",
+        "args": {
+            "accessToken": "$!access-token",
+            "companyId": "$!id",
+            "fields": "!fields"
+        }
+    },
+    "getCompanyUpdates": {
+        "url": "https://api.linkedin.com/v1/companies/:id/updates?format=json",
+        "method": "GET",
+        "args": {
+            "accessToken": "$!access-token",
+            "companyId": "$!id",
+            "eventType": "event-type",
+            "start": "start",
+            "count": "count"
+        }
+    },
+    "getSingleCompanyUpdate": {
+        "url": "https://api.linkedin.com/v1/companies/:id/updates/key=:update-key?format=json",
+        "method": "GET",
+        "args": {
+            "accessToken": "$!access-token",
+            "companyId": "$!id",
+            "updateKey": "$!update-key"
+        }
+    },
+    "getSingleCompanyUpdateComments": {
+        "url": "https://api.linkedin.com/v1/companies/:id/updates/key=:update-key/update-comments?format=json",
+        "method": "GET",
+        "args": {
+            "accessToken": "$!access-token",
+            "companyId": "$!id",
+            "updateKey": "$!update-key"
+        }
+    },
+    "getSingleCompanyUpdateLikes": {
+        "url": "https://api.linkedin.com/v1/companies/:id/updates/key=:update-key/likes?format=json",
+        "method": "GET",
+        "args": {
+            "accessToken": "$!access-token",
+            "companyId": "$!id",
+            "updateKey": "$!update-key"
+        }
+    },
+    "createCompanyShare": {
+        "url": "https://api.linkedin.com/v1/companies/:id/shares?format=json",
+        "method": "POST",
+        "args": {
+            "accessToken": "$!access-token",
+            "companyId": "$!id",
+            "comment": "comment",
+            "visibilityCode": "visibility.code",
+            "contentTitle": "content.title",
+            "contentDescription": "content.description",
+            "contentSubmittedUrl": "content.submitted-url",
+            "contentSubmittedImageUrl": "content.submitted-image-url",
+            "shareTargets": "share-target-reach.share-targets"
+        }
+    },
+    "getCompanyFollowers": {
+        "url": "https://api.linkedin.com/v1/companies/:id/num-followers?format=json",
+        "method": "GET",
+        "args": {
+            "accessToken": "$!access-token",
+            "companyId": "$!id",
+            "geo": "geo",
+            "companySizes": "company-sizes",
+            "jobFunc": "job-func",
+            "industries": "industries",
+            "seniorities": "seniorities"
+        }
+    },
+    "addCommentOnCompanyBehalf": {
+        "url": "https://api.linkedin.com/v1/companies/:id/updates/key=:update-key/update-comments-as-company/",
+        "method": "POST",
+        "args": {
+            "accessToken": "$!access-token",
+            "companyId": "$!id",
+            "updateKey": "$!update-key",
+            "comment": "$comment"
+        }
+    },
+    "getCompanyHistoricalFollowerStatistics": {
+        "url": "https://api.linkedin.com/v1/companies/:id/historical-follow-statistics?format=json",
+        "method": "GET",
+        "args": {
+            "accessToken": "$!access-token",
+            "companyId": "$!id",
+            "timeGranularity": "$time-granularity",
+            "startTimestamp": "$start-timestamp",
+            "endTimestamp": "end-timestamp"
+        }
+    },
+     "getCompanyHistoricalStatusUpdateStatistics": {
+        "url": "https://api.linkedin.com/v1/companies/:id/historical-follow-statistics?format=json",
+        "method": "GET",
+        "args": {
+            "accessToken": "$!access-token",
+            "companyId": "$!id",
+            "timeGranularity": "$time-granularity",
+            "startTimestamp": "$start-timestamp",
+            "endTimestamp": "end-timestamp",
+            "updateKey": "update-key"
+        }
+    },
+    "getCompanyPageStatistics": {
+        "url": "https://api.linkedin.com/v1/companies/:id/company-statistics?format=json",
+        "method": "GET",
+        "args": {
+            "accessToken": "$!access-token",
+            "companyId": "$!id"
+        }
+    }
+}
