@@ -41,6 +41,7 @@ for(let func in control) {
     app.post(`/api/${PACKAGE_NAME}/${func}`, _(function* (req, res) {
         let opts     = {};
         let authopts = {};
+        let reqopts  = {};
         let r = {
             callback     : "",
             contextWrites: {}
@@ -73,7 +74,10 @@ for(let func in control) {
                 authopts = {};
             }
 
-            response            = yield new API(url).auth(authopts).request(options);
+            if(req.body.args['profileLanguage']) 
+                reqopts.headers = {'Accept-Language': req.body.args['profileLanguage']};
+
+            response            = yield new API(url, reqopts).auth(authopts).request(options);
             r.callback          = 'success';
             r.contextWrites[to] = response === null ? 'No items.' : response;
         } catch(e) {

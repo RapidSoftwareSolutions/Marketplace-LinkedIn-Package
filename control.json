@@ -15,7 +15,7 @@
         "args": {
             "accessToken": "$!access-token",
             "fields": "!fields",
-            "profileLanguage": "profile-language"
+            "profileLanguage": "!profile-language"
         }
     },
     "createSharedContent": {
