@@ -4,7 +4,7 @@ global.PACKAGE_NAME = "LinkedIn";
 
 const express       = require('express'),
     bodyParser      = require('body-parser'),
-    API             = require('../package.js'),
+    API             = require('rapi-js-package'),
     fs              = require('fs'),
     lib             = require('./lib'),
     _               = lib.callback;
@@ -65,7 +65,7 @@ for(let func in control) {
             //options.debug   = true;
             options.hasSkip   = true;
             options.hasTree   = !!hasTree[func];
-            //options.xml       = !!hasTree[func] ? {wrapper: 'share'} : false;
+            //options.xml     = !!hasTree[func] ? {wrapper: 'share'} : false;
             if(!req.body.args['fields']) url = url.replace(':(:fields)', '');
                  
             if(func == 'getAccessToken') {
@@ -81,9 +81,11 @@ for(let func in control) {
             r.callback          = 'success';
             r.contextWrites[to] = response === null ? 'No items.' : response;
         } catch(e) {
-            console.log(e)
             r.callback          = 'error';
-            r.contextWrites[to] = e.message ? e.message : e;
+            r.contextWrites[to] = e.status_code == 'REQUIRED_FIELDS' ? e : {
+                status_code: "API_ERROR",
+                status_msg:  e.message ? e.message : e
+            };
         }
 
         res.status(200).send(r);
