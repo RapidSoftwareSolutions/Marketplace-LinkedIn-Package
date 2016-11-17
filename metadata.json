@@ -429,7 +429,7 @@
     }]
   }, {
     "name": "getCompanyHistoricalStatusUpdateStatistics",
-    "description": "",
+    "description": "The Historical Status Update Statistics API provides impression and engagement data on company shares for a given company page.",
     "args": [{
       "name": "accessToken",
       "type": "credentials",
