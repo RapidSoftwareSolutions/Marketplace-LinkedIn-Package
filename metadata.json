@@ -10,633 +10,476 @@
       "accessToken"
     ]
   },
-  "blocks": [
-    {
-      "name": "getAccessToken",
-      "description": "Exchange Authorization Code for an Access Token.",
-      "args": [
-        {
-          "name": "code",
-          "type": "String",
-          "info": "Required: The authorization code."
-        },
-        {
-          "name": "redirectUri",
-          "type": "String",
-          "info": "Required: Application redirect url."
-        },
-        {
-          "name": "clientId",
-          "type": "String",
-          "info": "Required: Application API Key."
-        },
-        {
-          "name": "clientSecret",
-          "type": "String",
-          "info": "Required: The `Secret Key` value generated in prevoius OAuth step. Follow the Best Practices guide (https://developer.linkedin.com/docs/best-practices#keysecret) for handing your clientSecret value."
-        }
-      ],
-      "callbacks": [
-        {
-          "name": "error",
-          "info": "Error"
-        },
-        {
-          "name": "success",
-          "info": "Success"
-        }
-      ]
-    },
-    {
-      "name": "getProfileData",
-      "description": "Once you have obtained a valid access token for the user, you can use the following REST API call to retrieve basic profile data for the user.",
-      "args": [
-        {
-          "name": "accessToken",
-          "type": "credentials",
-          "info": "Required: LinkedIn accessToken."
-        },
-        {
-          "name": "fields",
-          "type": "String",
-          "info": "There are additional company profile fields available that are not returned as part of the default call."
-        },
-        {
-          "name": "profileLanguage",
-          "type": "String",
-          "info": "LinkedIn members have the opportunity to provide their profile information in multiple languages. To specify the language you would prefer to have returned, you include an `profileLanguage` to request. The value of the `profileLanguage` should be a comma separated list of Language Codes (https://developer.linkedin.com/docs/reference/language-codes), ordered from highest to lowest priority of preference. Example: `es-ES, en-US`"
-        }
-      ],
-      "callbacks": [
-        {
-          "name": "error",
-          "info": "Error"
-        },
-        {
-          "name": "success",
-          "info": "Success"
-        }
-      ]
-    },
-    {
-      "name": "createSharedContent",
-      "description": "Use Share on LinkedIn to: Grow your user base and drive traffic to your website, \nGet your content in front of a potential audience of millions of professionals, \nBenefit from viral distribution as people share your content with their professional networks",
-      "args": [
-        {
-          "name": "accessToken",
-          "type": "credentials",
-          "info": "Required: LinkedIn accessToken."
-        },
-        {
-          "name": "comment",
-          "type": "String",
-          "info": "Required: A comment by the member to associated with the share. If none of the above content parameters are provided, the comment must contain a URL to the content you want to share.  If the comment contains multiple URLs, only the first one will be analyzed for content to share."
-        },
-        {
-          "name": "visibilityCode",
-          "type": "String",
-          "info": "Required: One of the following values: `anyone`:  Share will be visible to all members. `connections-only`:  Share will only be visible to connections of the member performing the share."
-        },
-        {
-          "name": "contentTitle",
-          "type": "String",
-          "info": "Required: The title of the content being shared."
-        },
-        {
-          "name": "contentDescription",
-          "type": "String",
-          "info": "Optional if you post with url: The description of the content being shared."
-        },
-        {
-          "name": "contentSubmittedUrl",
-          "type": "String",
-          "info": "Optional if you post with url: The description of the content being shared."
-        },
-        {
-          "name": "contentSubmittedImageUrl",
-          "type": "String",
-          "info": "Optional if you post with url: A fully qualified URL to a thumbnail image to accompany the shared content. The image should be at least 80 x 150px for best results."
-        }
-      ],
-      "callbacks": [
-        {
-          "name": "error",
-          "info": "Error"
-        },
-        {
-          "name": "success",
-          "info": "Success"
-        }
-      ]
-    },
-    {
-      "name": "checkCompanySharing",
-      "description": "This call returns a simple boolean value that indicates whether the company specified by the `companyId` value in the request has sharing enabled or disabled.  Sharing is enabled (i.e. true) by default.",
-      "args": [
-        {
-          "name": "accessToken",
-          "type": "credentials",
-          "info": "Required: LinkedIn accessToken."
-        },
-        {
-          "name": "companyId",
-          "type": "String",
-          "info": "Required: Valid Company id."
-        }
-      ],
-      "callbacks": [
-        {
-          "name": "error",
-          "info": "Error"
-        },
-        {
-          "name": "success",
-          "info": "Success"
-        }
-      ]
-    },
-    {
-      "name": "checkMemberIsCompanyAdministrator",
-      "description": "The API calls listed on this page require the member to be an administrator of the target company.  This call returns a simple boolean value that indicates whether the currently authenticated user is configured to be an administrator of the company specified by the `companyId` value in the request.",
-      "args": [
-        {
-          "name": "accessToken",
-          "type": "credentials",
-          "info": "Required: LinkedIn accessToken."
-        },
-        {
-          "name": "companyId",
-          "type": "String",
-          "info": "Required: Valid Company id."
-        }
-      ],
-      "callbacks": [
-        {
-          "name": "error",
-          "info": "Error"
-        },
-        {
-          "name": "success",
-          "info": "Success"
-        }
-      ]
-    },
-    {
-      "name": "getCompaniesWhereUserAdministrator",
-      "description": "The API calls listed on this page require the member to be an administrator of the target company. This call returns a list of all of the companies that the authenticated user is currently configured to be an administrator of.  If the user is an administrator of more than 10 companies, you will need to use the optional start and count parameters to page through the complete result set.  The total number of companies that the member is an administrator of is returned in the body of the request.  You can use this value to determine whether you need to make additional paged requests to retrieve the complete list of companies for the user.",
-      "args": [
-        {
-          "name": "accessToken",
-          "type": "credentials",
-          "info": "Required: LinkedIn accessToken."
-        },
-        {
-          "name": "start",
-          "type": "String",
-          "info": "The offset value for paginating update results by."
-        },
-        {
-          "name": "count",
-          "type": "String",
-          "info": "Maximum number of updates to return."
-        }
-      ],
-      "callbacks": [
-        {
-          "name": "error",
-          "info": "Error"
-        },
-        {
-          "name": "success",
-          "info": "Success"
-        }
-      ]
-    },
-    {
-      "name": "getCompanyProfile",
-      "description": "This call will return profile information about the company specified by the `companyId` value in the request.",
-      "args": [
-        {
-          "name": "accessToken",
-          "type": "credentials",
-          "info": "Required: LinkedIn accessToken."
-        },
-        {
-          "name": "companyId",
-          "type": "String",
-          "info": "Required: Valid Company id."
-        },
-        {
-          "name": "fields",
-          "type": "String",
-          "info": "There are additional company profile fields available that are not returned as part of the default call.  The following example illustrates how you modify your request to ask for additional profile fields beyond the default values."
-        }
-      ],
-      "callbacks": [
-        {
-          "name": "error",
-          "info": "Error"
-        },
-        {
-          "name": "success",
-          "info": "Success"
-        }
-      ]
-    },
-    {
-      "name": "getCompanyUpdates",
-      "description": "This call returns a list of update events from the from the LinkedIn company page of the company identified by the `companyId` value in the request.",
-      "args": [
-        {
-          "name": "accessToken",
-          "type": "credentials",
-          "info": "Required: LinkedIn accessToken."
-        },
-        {
-          "name": "companyId",
-          "type": "String",
-          "info": "Required: Valid Company id."
-        },
-        {
-          "name": "eventType",
-          "type": "String",
-          "info": "Valid values are: `job-posting`, `new-product`, `status-update`."
-        },
-        {
-          "name": "start",
-          "type": "String",
-          "info": "The offset value for paginating update results by."
-        },
-        {
-          "name": "count",
-          "type": "String",
-          "info": "Maximum number of updates to return."
-        }
-      ],
-      "callbacks": [
-        {
-          "name": "error",
-          "info": "Error"
-        },
-        {
-          "name": "success",
-          "info": "Success"
-        }
-      ]
-    },
-    {
-      "name": "getSingleCompanyUpdate",
-      "description": "This call will return a single specific company update record for the company identified by the `companyId` value and the update identified by the `updateKey` value in the request.",
-      "args": [
-        {
-          "name": "accessToken",
-          "type": "credentials",
-          "info": "Required: LinkedIn accessToken."
-        },
-        {
-          "name": "companyId",
-          "type": "String",
-          "info": "Required: Valid Company id."
-        },
-        {
-          "name": "updateKey",
-          "type": "String",
-          "info": "Required: The update identified."
-        }
-      ],
-      "callbacks": [
-        {
-          "name": "error",
-          "info": "Error"
-        },
-        {
-          "name": "success",
-          "info": "Success"
-        }
-      ]
-    },
-    {
-      "name": "getSingleCompanyUpdateComments",
-      "description": "This call will return all of the comments for the company update identified by `updateKey` for the company identified by the `companyId` value in the request.  A maximum of 100 comments will be returned.",
-      "args": [
-        {
-          "name": "accessToken",
-          "type": "credentials",
-          "info": "Required: LinkedIn accessToken."
-        },
-        {
-          "name": "companyId",
-          "type": "String",
-          "info": "Required: Valid Company id."
-        },
-        {
-          "name": "updateKey",
-          "type": "String",
-          "info": "Required: The update identified."
-        }
-      ],
-      "callbacks": [
-        {
-          "name": "error",
-          "info": "Error"
-        },
-        {
-          "name": "success",
-          "info": "Success"
-        }
-      ]
-    },
-    {
-      "name": "getSingleCompanyUpdateLikes",
-      "description": "This call will return all of the likes for the company update identified by `updateKey` for the company identified by the `companyId` value in the request.  By default, the most recent 100 likes will be returned.",
-      "args": [
-        {
-          "name": "accessToken",
-          "type": "credentials",
-          "info": "Required: LinkedIn accessToken."
-        },
-        {
-          "name": "companyId",
-          "type": "String",
-          "info": "Required: Valid Company id."
-        },
-        {
-          "name": "updateKey",
-          "type": "String",
-          "info": "Required: The update identified."
-        }
-      ],
-      "callbacks": [
-        {
-          "name": "error",
-          "info": "Error"
-        },
-        {
-          "name": "success",
-          "info": "Success"
-        }
-      ]
-    },
-    {
-      "name": "createCompanyShare",
-      "description": "Create a company share",
-      "args": [
-        {
-          "name": "accessToken",
-          "type": "credentials",
-          "info": "Required: LinkedIn accessToken."
-        },
-        {
-          "name": "companyId",
-          "type": "String",
-          "info": "Required: Valid Company id."
-        },
-        {
-          "name": "comment",
-          "type": "String",
-          "info": "A comment by the member to associated with the share. If none of the above content parameters are provided, the comment must contain a URL to the content you want to share.  If the comment contains multiple URLs, only the first one will be analyzed for content to share."
-        },
-        {
-          "name": "visibilityCode",
-          "type": "String",
-          "info": "One of the following values: `anyone`:  Share will be visible to all members. \n `connections-only`:  Share will only be visible to connections of the member performing the share. \nThis field is required in all sharing calls."
-        },
-        {
-          "name": "contentTitle",
-          "type": "String",
-          "info": "The title of the content being shared."
-        },
-        {
-          "name": "contentDescription",
-          "type": "String",
-          "info": "The description of the content being shared."
-        },
-        {
-          "name": "contentSubmittedUrl",
-          "type": "String",
-          "info": "A fully qualified URL for the content being shared."
-        },
-        {
-          "name": "contentSubmittedImageUrl",
-          "type": "String",
-          "info": "A fully qualified URL to a thumbnail image to accompany the shared content. The image should be at least 80 x 150px for best results. 2MB max filesize."
-        },
-        {
-          "name": "shareTargets",
-          "type": "String",
-          "info": "A collection of targeting codes and values used to ensure that the shared content reaches a specific audience."
-        }
-      ],
-      "callbacks": [
-        {
-          "name": "error",
-          "info": "Error"
-        },
-        {
-          "name": "success",
-          "info": "Success"
-        }
-      ]
-    },
-    {
-      "name": "getCompanyFollowers",
-      "description": "If you choose to target content that you share on behalf of a company, there is a minumum number of followers that must make up the segment you are targeting before you will be able to successfully share the targeted content.  This request allows you to get a follower-count for a specific segment to ensure you are at or over the minimum requirement for the target segment for the company specified by the `companyId` value in the request.",
-      "args": [
-        {
-          "name": "accessToken",
-          "type": "credentials",
-          "info": "Required: LinkedIn accessToken."
-        },
-        {
-          "name": "companyId",
-          "type": "String",
-          "info": "Required: Valid Company id."
-        },
-        {
-          "name": "geo",
-          "type": "String",
-          "info": "Segment by a particular geographic area."
-        },
-        {
-          "name": "companySizes",
-          "type": "String",
-          "info": "Segment by a particular company size targeting code."
-        },
-        {
-          "name": "jobFunc",
-          "type": "String",
-          "info": "Segment by member job function targeting code."
-        },
-        {
-          "name": "industries",
-          "type": "String",
-          "info": "Segment by member industry."
-        },
-        {
-          "name": "seniorities",
-          "type": "String",
-          "info": "Segment by member seniority level targeting code."
-        }
-      ],
-      "callbacks": [
-        {
-          "name": "error",
-          "info": "Error"
-        },
-        {
-          "name": "success",
-          "info": "Success"
-        }
-      ]
-    },
-    {
-      "name": "addCommentOnCompanyBehalf",
-      "description": "This call will allow you to submit a comment on a company update on behalf of a company, rather than a member.  The comment is submitted for the update identified by `updateKey` under the company identified by `companyId` in the request.",
-      "args": [
-        {
-          "name": "accessToken",
-          "type": "credentials",
-          "info": "Required: LinkedIn accessToken."
-        },
-        {
-          "name": "companyId",
-          "type": "String",
-          "info": "Required: Valid Company id."
-        },
-        {
-          "name": "updateKey",
-          "type": "String",
-          "info": "Required: The update identified."
-        },
-        {
-          "name": "comment",
-          "type": "String",
-          "info": "Required: A comment by the company to associated with the share. If none of the above content parameters are provided, the comment must contain a URL to the content you want to share.  If the comment contains multiple URLs, only the first one will be analyzed for content to share."
-        }
-      ],
-      "callbacks": [
-        {
-          "name": "error",
-          "info": "Error"
-        },
-        {
-          "name": "success",
-          "info": "Success"
-        }
-      ]
-    },
-    {
-      "name": "getCompanyHistoricalFollowerStatistics",
-      "description": "This call retrieves statistics about followers for a particular company page identified by the `companyId` value in the request.  The request returns a follower count for both paid and organic followers within all of the days or months in the selected date range, based on the requested granularity. ",
-      "args": [
-        {
-          "name": "accessToken",
-          "type": "credentials",
-          "info": "Required: LinkedIn accessToken."
-        },
-        {
-          "name": "companyId",
-          "type": "String",
-          "info": "Required: Valid Company id."
-        },
-        {
-          "name": "timeGranularity",
-          "type": "String",
-          "info": "Required: Granularity of statistics. Supported values are: `day`, `month`"
-        },
-        {
-          "name": "startTimestamp",
-          "type": "String",
-          "info": "Required: Starting timestamp of when the stats search should begin (milliseconds since epoch)."
-        },
-        {
-          "name": "endTimestamp",
-          "type": "String",
-          "info": "Ending timestamp of when the stats search should end (milliseconds since epoch). The current time will be used if parameter not set."
-        }
-      ],
-      "callbacks": [
-        {
-          "name": "error",
-          "info": "Error"
-        },
-        {
-          "name": "success",
-          "info": "Success"
-        }
-      ]
-    },
-    {
-      "name": "getCompanyHistoricalStatusUpdateStatistics",
-      "description": "",
-      "args": [
-        {
-          "name": "accessToken",
-          "type": "credentials",
-          "info": "Required: LinkedIn accessToken."
-        },
-        {
-          "name": "companyId",
-          "type": "String",
-          "info": "Required: Valid Company id."
-        },
-        {
-          "name": "timeGranularity",
-          "type": "String",
-          "info": "Required: Granularity of statistics. Supported values are: `day`, `month`"
-        },
-        {
-          "name": "startTimestamp",
-          "type": "String",
-          "info": "Required: Starting timestamp of when the stats search should begin (milliseconds since epoch)."
-        },
-        {
-          "name": "endTimestamp",
-          "type": "String",
-          "info": "Ending timestamp of when the stats search should end (milliseconds since epoch). The current time will be used if parameter not set."
-        },
-        {
-          "name": "updateKey",
-          "type": "String",
-          "info": "Optionally provide an update key value to return statistics for a specific company update."
-        }
-      ],
-      "callbacks": [
-        {
-          "name": "error",
-          "info": "Error"
-        },
-        {
-          "name": "success",
-          "info": "Success"
-        }
-      ]
-    },
-    {
-      "name": "getCompanyPageStatistics",
-      "description": "The Historical Status Update Statistics API provides impression and engagement data on company shares for a given company page. The API provides much better flexibility and granularity levels on company share stats compared to the existing Company Statistics API. The API can support statistics at both the aggregate and individual status update level. In addition, statistics retrieved by this API are up-to-date in real time.",
-      "args": [
-        {
-          "name": "accessToken",
-          "type": "credentials",
-          "info": "Required: LinkedIn accessToken."
-        },
-        {
-          "name": "companyId",
-          "type": "String",
-          "info": "Required: Valid Company id."
-        }
-      ],
-      "callbacks": [
-        {
-          "name": "error",
-          "info": "Error"
-        },
-        {
-          "name": "success",
-          "info": "Success"
-        }
-      ]
-    }
-  ]
+  "blocks": [{
+    "name": "getAccessToken",
+    "description": "Exchange Authorization Code for an Access Token.",
+    "args": [{
+      "name": "code",
+      "type": "String",
+      "info": "Required: The authorization code."
+    }, {
+      "name": "redirectUri",
+      "type": "String",
+      "info": "Required: Application redirect url."
+    }, {
+      "name": "clientId",
+      "type": "String",
+      "info": "Required: Application API Key."
+    }, {
+      "name": "clientSecret",
+      "type": "String",
+      "info": "Required: The `Secret Key` value generated in prevoius OAuth step. Follow the Best Practices guide (https://developer.linkedin.com/docs/best-practices#keysecret) for handing your clientSecret value."
+    }],
+    "callbacks": [{
+      "name": "error",
+      "info": "Error"
+    }, {
+      "name": "success",
+      "info": "Success"
+    }]
+  }, {
+    "name": "getProfileData",
+    "description": "Once you have obtained a valid access token for the user, you can use the following REST API call to retrieve basic profile data for the user.",
+    "args": [{
+      "name": "accessToken",
+      "type": "credentials",
+      "info": "Required: LinkedIn accessToken."
+    }, {
+      "name": "fields",
+      "type": "String",
+      "info": "There are additional company profile fields available that are not returned as part of the default call."
+    }, {
+      "name": "profileLanguage",
+      "type": "String",
+      "info": "LinkedIn members have the opportunity to provide their profile information in multiple languages. To specify the language you would prefer to have returned, you include an `profileLanguage` to request. The value of the `profileLanguage` should be a comma separated list of Language Codes (https://developer.linkedin.com/docs/reference/language-codes), ordered from highest to lowest priority of preference. Example: `es-ES, en-US`"
+    }],
+    "callbacks": [{
+      "name": "error",
+      "info": "Error"
+    }, {
+      "name": "success",
+      "info": "Success"
+    }]
+  }, {
+    "name": "createSharedContent",
+    "description": "Use Share on LinkedIn to: Grow your user base and drive traffic to your website, \nGet your content in front of a potential audience of millions of professionals, \nBenefit from viral distribution as people share your content with their professional networks",
+    "args": [{
+      "name": "accessToken",
+      "type": "credentials",
+      "info": "Required: LinkedIn accessToken."
+    }, {
+      "name": "comment",
+      "type": "String",
+      "info": "Required: A comment by the member to associated with the share. If none of the above content parameters are provided, the comment must contain a URL to the content you want to share.  If the comment contains multiple URLs, only the first one will be analyzed for content to share."
+    }, {
+      "name": "visibilityCode",
+      "type": "String",
+      "info": "Required: One of the following values: `anyone`:  Share will be visible to all members. `connections-only`:  Share will only be visible to connections of the member performing the share."
+    }, {
+      "name": "contentTitle",
+      "type": "String",
+      "info": "Required: The title of the content being shared."
+    }, {
+      "name": "contentDescription",
+      "type": "String",
+      "info": "Optional if you post with url: The description of the content being shared."
+    }, {
+      "name": "contentSubmittedUrl",
+      "type": "String",
+      "info": "Optional if you post with url: The description of the content being shared."
+    }, {
+      "name": "contentSubmittedImageUrl",
+      "type": "String",
+      "info": "Optional if you post with url: A fully qualified URL to a thumbnail image to accompany the shared content. The image should be at least 80 x 150px for best results."
+    }],
+    "callbacks": [{
+      "name": "error",
+      "info": "Error"
+    }, {
+      "name": "success",
+      "info": "Success"
+    }]
+  }, {
+    "name": "checkCompanySharing",
+    "description": "This call returns a simple boolean value that indicates whether the company specified by the `companyId` value in the request has sharing enabled or disabled.  Sharing is enabled (i.e. true) by default.",
+    "args": [{
+      "name": "accessToken",
+      "type": "credentials",
+      "info": "Required: LinkedIn accessToken."
+    }, {
+      "name": "companyId",
+      "type": "String",
+      "info": "Required: Valid Company id."
+    }],
+    "callbacks": [{
+      "name": "error",
+      "info": "Error"
+    }, {
+      "name": "success",
+      "info": "Success"
+    }]
+  }, {
+    "name": "checkMemberIsCompanyAdministrator",
+    "description": "The API calls listed on this page require the member to be an administrator of the target company.  This call returns a simple boolean value that indicates whether the currently authenticated user is configured to be an administrator of the company specified by the `companyId` value in the request.",
+    "args": [{
+      "name": "accessToken",
+      "type": "credentials",
+      "info": "Required: LinkedIn accessToken."
+    }, {
+      "name": "companyId",
+      "type": "String",
+      "info": "Required: Valid Company id."
+    }],
+    "callbacks": [{
+      "name": "error",
+      "info": "Error"
+    }, {
+      "name": "success",
+      "info": "Success"
+    }]
+  }, {
+    "name": "getCompaniesWhereUserAdministrator",
+    "description": "The API calls listed on this page require the member to be an administrator of the target company. This call returns a list of all of the companies that the authenticated user is currently configured to be an administrator of.  If the user is an administrator of more than 10 companies, you will need to use the optional start and count parameters to page through the complete result set.  The total number of companies that the member is an administrator of is returned in the body of the request.  You can use this value to determine whether you need to make additional paged requests to retrieve the complete list of companies for the user.",
+    "args": [{
+      "name": "accessToken",
+      "type": "credentials",
+      "info": "Required: LinkedIn accessToken."
+    }, {
+      "name": "start",
+      "type": "String",
+      "info": "The offset value for paginating update results by."
+    }, {
+      "name": "count",
+      "type": "String",
+      "info": "Maximum number of updates to return."
+    }],
+    "callbacks": [{
+      "name": "error",
+      "info": "Error"
+    }, {
+      "name": "success",
+      "info": "Success"
+    }]
+  }, {
+    "name": "getCompanyProfile",
+    "description": "This call will return profile information about the company specified by the `companyId` value in the request.",
+    "args": [{
+      "name": "accessToken",
+      "type": "credentials",
+      "info": "Required: LinkedIn accessToken."
+    }, {
+      "name": "companyId",
+      "type": "String",
+      "info": "Required: Valid Company id."
+    }, {
+      "name": "fields",
+      "type": "String",
+      "info": "There are additional company profile fields available that are not returned as part of the default call.  The following example illustrates how you modify your request to ask for additional profile fields beyond the default values."
+    }],
+    "callbacks": [{
+      "name": "error",
+      "info": "Error"
+    }, {
+      "name": "success",
+      "info": "Success"
+    }]
+  }, {
+    "name": "getCompanyUpdates",
+    "description": "This call returns a list of update events from the from the LinkedIn company page of the company identified by the `companyId` value in the request.",
+    "args": [{
+      "name": "accessToken",
+      "type": "credentials",
+      "info": "Required: LinkedIn accessToken."
+    }, {
+      "name": "companyId",
+      "type": "String",
+      "info": "Required: Valid Company id."
+    }, {
+      "name": "eventType",
+      "type": "String",
+      "info": "Valid values are: `job-posting`, `new-product`, `status-update`."
+    }, {
+      "name": "start",
+      "type": "String",
+      "info": "The offset value for paginating update results by."
+    }, {
+      "name": "count",
+      "type": "String",
+      "info": "Maximum number of updates to return."
+    }],
+    "callbacks": [{
+      "name": "error",
+      "info": "Error"
+    }, {
+      "name": "success",
+      "info": "Success"
+    }]
+  }, {
+    "name": "getSingleCompanyUpdate",
+    "description": "This call will return a single specific company update record for the company identified by the `companyId` value and the update identified by the `updateKey` value in the request.",
+    "args": [{
+      "name": "accessToken",
+      "type": "credentials",
+      "info": "Required: LinkedIn accessToken."
+    }, {
+      "name": "companyId",
+      "type": "String",
+      "info": "Required: Valid Company id."
+    }, {
+      "name": "updateKey",
+      "type": "String",
+      "info": "Required: The update identified."
+    }],
+    "callbacks": [{
+      "name": "error",
+      "info": "Error"
+    }, {
+      "name": "success",
+      "info": "Success"
+    }]
+  }, {
+    "name": "getSingleCompanyUpdateComments",
+    "description": "This call will return all of the comments for the company update identified by `updateKey` for the company identified by the `companyId` value in the request.  A maximum of 100 comments will be returned.",
+    "args": [{
+      "name": "accessToken",
+      "type": "credentials",
+      "info": "Required: LinkedIn accessToken."
+    }, {
+      "name": "companyId",
+      "type": "String",
+      "info": "Required: Valid Company id."
+    }, {
+      "name": "updateKey",
+      "type": "String",
+      "info": "Required: The update identified."
+    }],
+    "callbacks": [{
+      "name": "error",
+      "info": "Error"
+    }, {
+      "name": "success",
+      "info": "Success"
+    }]
+  }, {
+    "name": "getSingleCompanyUpdateLikes",
+    "description": "This call will return all of the likes for the company update identified by `updateKey` for the company identified by the `companyId` value in the request.  By default, the most recent 100 likes will be returned.",
+    "args": [{
+      "name": "accessToken",
+      "type": "credentials",
+      "info": "Required: LinkedIn accessToken."
+    }, {
+      "name": "companyId",
+      "type": "String",
+      "info": "Required: Valid Company id."
+    }, {
+      "name": "updateKey",
+      "type": "String",
+      "info": "Required: The update identified."
+    }],
+    "callbacks": [{
+      "name": "error",
+      "info": "Error"
+    }, {
+      "name": "success",
+      "info": "Success"
+    }]
+  }, {
+    "name": "createCompanyShare",
+    "description": "Create a company share",
+    "args": [{
+      "name": "accessToken",
+      "type": "credentials",
+      "info": "Required: LinkedIn accessToken."
+    }, {
+      "name": "companyId",
+      "type": "String",
+      "info": "Required: Valid Company id."
+    }, {
+      "name": "comment",
+      "type": "String",
+      "info": "A comment by the member to associated with the share. If none of the above content parameters are provided, the comment must contain a URL to the content you want to share.  If the comment contains multiple URLs, only the first one will be analyzed for content to share."
+    }, {
+      "name": "visibilityCode",
+      "type": "String",
+      "info": "One of the following values: `anyone`:  Share will be visible to all members. \n `connections-only`:  Share will only be visible to connections of the member performing the share. \nThis field is required in all sharing calls."
+    }, {
+      "name": "contentTitle",
+      "type": "String",
+      "info": "The title of the content being shared."
+    }, {
+      "name": "contentDescription",
+      "type": "String",
+      "info": "The description of the content being shared."
+    }, {
+      "name": "contentSubmittedUrl",
+      "type": "String",
+      "info": "A fully qualified URL for the content being shared."
+    }, {
+      "name": "contentSubmittedImageUrl",
+      "type": "String",
+      "info": "A fully qualified URL to a thumbnail image to accompany the shared content. The image should be at least 80 x 150px for best results. 2MB max filesize."
+    }, {
+      "name": "shareTargets",
+      "type": "String",
+      "info": "A collection of targeting codes and values used to ensure that the shared content reaches a specific audience."
+    }],
+    "callbacks": [{
+      "name": "error",
+      "info": "Error"
+    }, {
+      "name": "success",
+      "info": "Success"
+    }]
+  }, {
+    "name": "getCompanyFollowers",
+    "description": "If you choose to target content that you share on behalf of a company, there is a minumum number of followers that must make up the segment you are targeting before you will be able to successfully share the targeted content.  This request allows you to get a follower-count for a specific segment to ensure you are at or over the minimum requirement for the target segment for the company specified by the `companyId` value in the request.",
+    "args": [{
+      "name": "accessToken",
+      "type": "credentials",
+      "info": "Required: LinkedIn accessToken."
+    }, {
+      "name": "companyId",
+      "type": "String",
+      "info": "Required: Valid Company id."
+    }, {
+      "name": "geo",
+      "type": "String",
+      "info": "Segment by a particular geographic area."
+    }, {
+      "name": "companySizes",
+      "type": "String",
+      "info": "Segment by a particular company size targeting code."
+    }, {
+      "name": "jobFunc",
+      "type": "String",
+      "info": "Segment by member job function targeting code."
+    }, {
+      "name": "industries",
+      "type": "String",
+      "info": "Segment by member industry."
+    }, {
+      "name": "seniorities",
+      "type": "String",
+      "info": "Segment by member seniority level targeting code."
+    }],
+    "callbacks": [{
+      "name": "error",
+      "info": "Error"
+    }, {
+      "name": "success",
+      "info": "Success"
+    }]
+  }, {
+    "name": "addCommentOnCompanyBehalf",
+    "description": "This call will allow you to submit a comment on a company update on behalf of a company, rather than a member.  The comment is submitted for the update identified by `updateKey` under the company identified by `companyId` in the request.",
+    "args": [{
+      "name": "accessToken",
+      "type": "credentials",
+      "info": "Required: LinkedIn accessToken."
+    }, {
+      "name": "companyId",
+      "type": "String",
+      "info": "Required: Valid Company id."
+    }, {
+      "name": "updateKey",
+      "type": "String",
+      "info": "Required: The update identified."
+    }, {
+      "name": "comment",
+      "type": "String",
+      "info": "Required: A comment by the company to associated with the share. If none of the above content parameters are provided, the comment must contain a URL to the content you want to share.  If the comment contains multiple URLs, only the first one will be analyzed for content to share."
+    }],
+    "callbacks": [{
+      "name": "error",
+      "info": "Error"
+    }, {
+      "name": "success",
+      "info": "Success"
+    }]
+  }, {
+    "name": "getCompanyHistoricalFollowerStatistics",
+    "description": "This call retrieves statistics about followers for a particular company page identified by the `companyId` value in the request.  The request returns a follower count for both paid and organic followers within all of the days or months in the selected date range, based on the requested granularity. ",
+    "args": [{
+      "name": "accessToken",
+      "type": "credentials",
+      "info": "Required: LinkedIn accessToken."
+    }, {
+      "name": "companyId",
+      "type": "String",
+      "info": "Required: Valid Company id."
+    }, {
+      "name": "timeGranularity",
+      "type": "String",
+      "info": "Required: Granularity of statistics. Supported values are: `day`, `month`"
+    }, {
+      "name": "startTimestamp",
+      "type": "String",
+      "info": "Required: Starting timestamp of when the stats search should begin (milliseconds since epoch)."
+    }, {
+      "name": "endTimestamp",
+      "type": "String",
+      "info": "Ending timestamp of when the stats search should end (milliseconds since epoch). The current time will be used if parameter not set."
+    }],
+    "callbacks": [{
+      "name": "error",
+      "info": "Error"
+    }, {
+      "name": "success",
+      "info": "Success"
+    }]
+  }, {
+    "name": "getCompanyHistoricalStatusUpdateStatistics",
+    "description": "The Historical Status Update Statistics API provides impression and engagement data on company shares for a given company page.",
+    "args": [{
+      "name": "accessToken",
+      "type": "credentials",
+      "info": "Required: LinkedIn accessToken."
+    }, {
+      "name": "companyId",
+      "type": "String",
+      "info": "Required: Valid Company id."
+    }, {
+      "name": "timeGranularity",
+      "type": "String",
+      "info": "Required: Granularity of statistics. Supported values are: `day`, `month`"
+    }, {
+      "name": "startTimestamp",
+      "type": "String",
+      "info": "Required: Starting timestamp of when the stats search should begin (milliseconds since epoch)."
+    }, {
+      "name": "endTimestamp",
+      "type": "String",
+      "info": "Ending timestamp of when the stats search should end (milliseconds since epoch). The current time will be used if parameter not set."
+    }, {
+      "name": "updateKey",
+      "type": "String",
+      "info": "Optionally provide an update key value to return statistics for a specific company update."
+    }],
+    "callbacks": [{
+      "name": "error",
+      "info": "Error"
+    }, {
+      "name": "success",
+      "info": "Success"
+    }]
+  }, {
+    "name": "getCompanyPageStatistics",
+    "description": "The Historical Status Update Statistics API provides impression and engagement data on company shares for a given company page. The API provides much better flexibility and granularity levels on company share stats compared to the existing Company Statistics API. The API can support statistics at both the aggregate and individual status update level. In addition, statistics retrieved by this API are up-to-date in real time.",
+    "args": [{
+      "name": "accessToken",
+      "type": "credentials",
+      "info": "Required: LinkedIn accessToken."
+    }, {
+      "name": "companyId",
+      "type": "String",
+      "info": "Required: Valid Company id."
+    }],
+    "callbacks": [{
+      "name": "error",
+      "info": "Error"
+    }, {
+      "name": "success",
+      "info": "Success"
+    }]
+  }]
 }
