@@ -25,7 +25,7 @@ app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
 app.all(`/api/${PACKAGE_NAME}`, (req, res) => { res.send(metadata); });
 
 app.get(`/api/${PACKAGE_NAME}/callback`, (req, res) => {
-    console.log(req.params);
+    res.end(JSON.stringify(req.params));
 });
 
 for(let func in control) {
