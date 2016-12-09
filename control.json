@@ -142,22 +142,22 @@
         }
     },
     "getCompanyHistoricalFollowerStatistics": {
-        "url": "https://api.linkedin.com/v1/companies/:id/historical-follow-statistics?format=json",
+        "url": "https://api.linkedin.com/v1/companies/:companyId/historical-follow-statistics?format=json",
         "method": "GET",
         "args": {
             "accessToken": "$!access-token",
-            "companyId": "$!id",
+            "companyId": "$!companyId",
             "timeGranularity": "$time-granularity",
             "startTimestamp": "$start-timestamp",
             "endTimestamp": "end-timestamp"
         }
     },
      "getCompanyHistoricalStatusUpdateStatistics": {
-        "url": "https://api.linkedin.com/v1/companies/:id/historical-follow-statistics?format=json",
+        "url": "https://api.linkedin.com/v1/companies/:companyId/historical-status-update-statistics?format=json",
         "method": "GET",
         "args": {
             "accessToken": "$!access-token",
-            "companyId": "$!id",
+            "companyId": "$!companyId",
             "timeGranularity": "$time-granularity",
             "startTimestamp": "$start-timestamp",
             "endTimestamp": "end-timestamp",
@@ -165,11 +165,11 @@
         }
     },
     "getCompanyPageStatistics": {
-        "url": "https://api.linkedin.com/v1/companies/:id/company-statistics?format=json",
+        "url": "https://api.linkedin.com/v1/companies/:companyId/company-statistics?format=json",
         "method": "GET",
         "args": {
             "accessToken": "$!access-token",
-            "companyId": "$!id"
+            "companyId": "$!companyId"
         }
     }
 }
