@@ -1,6 +1,7 @@
 {
   "package": "LinkedIn",
   "tagline": "LinkedIn API Package",
+  "keywords": ["API", "company", "enterprise", "job", "jobs", "marketing", "networking", "news", "post", "recruiting", "social", "work"],
   "description": "Bring the power of the world's largest professional network to your apps",
   "image": "http://logo.clearbit.com/linkedin.com",
   "repo": "https://github.com/RapidSoftwareSolutions/Marketplace-LinkedIn-Package",
@@ -12,23 +13,27 @@
   },
   "blocks": [{
     "name": "getAccessToken",
-    "description": "Exchange Authorization Code for an Access Token.",
+    "description": "OAuth2",
     "args": [{
       "name": "code",
       "type": "String",
-      "info": "Required: The authorization code."
+      "info": "The authorization code.",
+      "required": true
     }, {
       "name": "redirectUri",
       "type": "String",
-      "info": "Required: Application redirect url."
+      "info": "Application redirect url.",
+      "required": true
     }, {
       "name": "clientId",
       "type": "credentials",
-      "info": "Required: Application API Key."
+      "info": "Application API Key.",
+      "required": true
     }, {
       "name": "clientSecret",
       "type": "credentials",
-      "info": "Required: The `Secret Key` value generated in prevoius OAuth step. Follow the Best Practices guide (https://developer.linkedin.com/docs/best-practices#keysecret) for handing your clientSecret value."
+      "info": "The `Secret Key` value generated in prevoius OAuth step. Follow the Best Practices guide (https://developer.linkedin.com/docs/best-practices#keysecret) for handing your clientSecret value.",
+      "required": true
     }],
     "callbacks": [{
       "name": "error",
@@ -43,15 +48,18 @@
     "args": [{
       "name": "accessToken",
       "type": "String",
-      "info": "Required: LinkedIn accessToken."
+      "info": "LinkedIn accessToken.",
+      "required": true
     }, {
       "name": "fields",
       "type": "String",
-      "info": "There are additional company profile fields available that are not returned as part of the default call."
+      "info": "There are additional company profile fields available that are not returned as part of the default call.",
+      "required": false
     }, {
       "name": "profileLanguage",
       "type": "String",
-      "info": "LinkedIn members have the opportunity to provide their profile information in multiple languages. To specify the language you would prefer to have returned, you include an `profileLanguage` to request. The value of the `profileLanguage` should be a comma separated list of Language Codes (https://developer.linkedin.com/docs/reference/language-codes), ordered from highest to lowest priority of preference. Example: `es-ES, en-US`"
+      "info": "LinkedIn members have the opportunity to provide their profile information in multiple languages. To specify the language you would prefer to have returned, you include an `profileLanguage` to request. The value of the `profileLanguage` should be a comma separated list of Language Codes (https://developer.linkedin.com/docs/reference/language-codes), ordered from highest to lowest priority of preference. Example: `es-ES, en-US`",
+      "required": false
     }],
     "callbacks": [{
       "name": "error",
@@ -66,31 +74,38 @@
     "args": [{
       "name": "accessToken",
       "type": "String",
-      "info": "Required: LinkedIn accessToken."
+      "info": "LinkedIn accessToken.",
+      "required": true
     }, {
       "name": "comment",
       "type": "String",
-      "info": "Required: A comment by the member to associated with the share. If none of the above content parameters are provided, the comment must contain a URL to the content you want to share.  If the comment contains multiple URLs, only the first one will be analyzed for content to share."
+      "info": "A comment by the member to associated with the share. If none of the above content parameters are provided, the comment must contain a URL to the content you want to share.  If the comment contains multiple URLs, only the first one will be analyzed for content to share.",
+      "required": true
     }, {
       "name": "visibilityCode",
       "type": "String",
-      "info": "Required: One of the following values: `anyone`:  Share will be visible to all members. `connections-only`:  Share will only be visible to connections of the member performing the share."
+      "info": "One of the following values: `anyone`:  Share will be visible to all members. `connections-only`:  Share will only be visible to connections of the member performing the share.",
+      "required": true
     }, {
       "name": "contentTitle",
       "type": "String",
-      "info": "Required: The title of the content being shared."
+      "info": "The title of the content being shared.",
+      "required": true
     }, {
       "name": "contentDescription",
       "type": "String",
-      "info": "Optional if you post with url: The description of the content being shared."
+      "info": "Optional if you post with url: The description of the content being shared.",
+      "required": false
     }, {
       "name": "contentSubmittedUrl",
       "type": "String",
-      "info": "Optional if you post with url: The description of the content being shared."
+      "info": "Optional if you post with url: The description of the content being shared.",
+      "required": false
     }, {
       "name": "contentSubmittedImageUrl",
       "type": "String",
-      "info": "Optional if you post with url: A fully qualified URL to a thumbnail image to accompany the shared content. The image should be at least 80 x 150px for best results."
+      "info": "Optional if you post with url: A fully qualified URL to a thumbnail image to accompany the shared content. The image should be at least 80 x 150px for best results.",
+      "required": false
     }],
     "callbacks": [{
       "name": "error",
@@ -105,11 +120,13 @@
     "args": [{
       "name": "accessToken",
       "type": "String",
-      "info": "Required: LinkedIn accessToken."
+      "info": "LinkedIn accessToken.",
+      "required": true
     }, {
       "name": "companyId",
       "type": "String",
-      "info": "Required: Valid Company id."
+      "info": "Valid Company id.",
+      "required": true
     }],
     "callbacks": [{
       "name": "error",
@@ -124,11 +141,13 @@
     "args": [{
       "name": "accessToken",
       "type": "String",
-      "info": "Required: LinkedIn accessToken."
+      "info": "LinkedIn accessToken.",
+      "required": true
     }, {
       "name": "companyId",
       "type": "String",
-      "info": "Required: Valid Company id."
+      "info": "Valid Company id.",
+      "required": true
     }],
     "callbacks": [{
       "name": "error",
@@ -143,15 +162,18 @@
     "args": [{
       "name": "accessToken",
       "type": "String",
-      "info": "Required: LinkedIn accessToken."
+      "info": "LinkedIn accessToken.",
+      "required": true
     }, {
       "name": "start",
       "type": "String",
-      "info": "The offset value for paginating update results by."
+      "info": "The offset value for paginating update results by.",
+      "required": false
     }, {
       "name": "count",
       "type": "String",
-      "info": "Maximum number of updates to return."
+      "info": "Maximum number of updates to return.",
+      "required": false
     }],
     "callbacks": [{
       "name": "error",
@@ -166,15 +188,18 @@
     "args": [{
       "name": "accessToken",
       "type": "String",
-      "info": "Required: LinkedIn accessToken."
+      "info": "LinkedIn accessToken.",
+      "required": true
     }, {
       "name": "companyId",
       "type": "String",
-      "info": "Required: Valid Company id."
+      "info": "Valid Company id.",
+      "required": true
     }, {
       "name": "fields",
       "type": "String",
-      "info": "There are additional company profile fields available that are not returned as part of the default call.  The following example illustrates how you modify your request to ask for additional profile fields beyond the default values."
+      "info": "There are additional company profile fields available that are not returned as part of the default call.  The following example illustrates how you modify your request to ask for additional profile fields beyond the default values.",
+      "required": false
     }],
     "callbacks": [{
       "name": "error",
@@ -189,23 +214,28 @@
     "args": [{
       "name": "accessToken",
       "type": "String",
-      "info": "Required: LinkedIn accessToken."
+      "info": "LinkedIn accessToken.",
+      "required": true
     }, {
       "name": "companyId",
       "type": "String",
-      "info": "Required: Valid Company id."
+      "info": "Valid Company id.",
+      "required": true
     }, {
       "name": "eventType",
       "type": "String",
-      "info": "Valid values are: `job-posting`, `new-product`, `status-update`."
+      "info": "Valid values are: `job-posting`, `new-product`, `status-update`.",
+      "required": false
     }, {
       "name": "start",
       "type": "String",
-      "info": "The offset value for paginating update results by."
+      "info": "The offset value for paginating update results by.",
+      "required": false
     }, {
       "name": "count",
       "type": "String",
-      "info": "Maximum number of updates to return."
+      "info": "Maximum number of updates to return.",
+      "required": false
     }],
     "callbacks": [{
       "name": "error",
@@ -220,15 +250,18 @@
     "args": [{
       "name": "accessToken",
       "type": "String",
-      "info": "Required: LinkedIn accessToken."
+      "info": "LinkedIn accessToken.",
+      "required": true
     }, {
       "name": "companyId",
       "type": "String",
-      "info": "Required: Valid Company id."
+      "info": "Valid Company id.",
+      "required": true
     }, {
       "name": "updateKey",
       "type": "String",
-      "info": "Required: The update identified."
+      "info": "The update identified.",
+      "required": true
     }],
     "callbacks": [{
       "name": "error",
@@ -243,15 +276,18 @@
     "args": [{
       "name": "accessToken",
       "type": "String",
-      "info": "Required: LinkedIn accessToken."
+      "info": "LinkedIn accessToken.",
+      "required": true
     }, {
       "name": "companyId",
       "type": "String",
-      "info": "Required: Valid Company id."
+      "info": "Valid Company id.",
+      "required": true
     }, {
       "name": "updateKey",
       "type": "String",
-      "info": "Required: The update identified."
+      "info": "The update identified.",
+      "required": true
     }],
     "callbacks": [{
       "name": "error",
@@ -266,15 +302,18 @@
     "args": [{
       "name": "accessToken",
       "type": "String",
-      "info": "Required: LinkedIn accessToken."
+      "info": "LinkedIn accessToken.",
+      "required": true
     }, {
       "name": "companyId",
       "type": "String",
-      "info": "Required: Valid Company id."
+      "info": "Valid Company id.",
+      "required": true
     }, {
       "name": "updateKey",
       "type": "String",
-      "info": "Required: The update identified."
+      "info": "The update identified.",
+      "required": true
     }],
     "callbacks": [{
       "name": "error",
@@ -289,39 +328,48 @@
     "args": [{
       "name": "accessToken",
       "type": "String",
-      "info": "Required: LinkedIn accessToken."
+      "info": "LinkedIn accessToken.",
+      "required": true
     }, {
       "name": "companyId",
       "type": "String",
-      "info": "Required: Valid Company id."
+      "info": "Valid Company id.",
+      "required": true
     }, {
       "name": "comment",
       "type": "String",
-      "info": "A comment by the member to associated with the share. If none of the above content parameters are provided, the comment must contain a URL to the content you want to share.  If the comment contains multiple URLs, only the first one will be analyzed for content to share."
+      "info": "A comment by the member to associated with the share. If none of the above content parameters are provided, the comment must contain a URL to the content you want to share.  If the comment contains multiple URLs, only the first one will be analyzed for content to share.",
+      "required": false
     }, {
       "name": "visibilityCode",
       "type": "String",
-      "info": "One of the following values: `anyone`:  Share will be visible to all members. \n `connections-only`:  Share will only be visible to connections of the member performing the share. \nThis field is required in all sharing calls."
+      "info": "One of the following values: `anyone`:  Share will be visible to all members. \n `connections-only`:  Share will only be visible to connections of the member performing the share. \nThis field is required in all sharing calls.",
+      "required": false
     }, {
       "name": "contentTitle",
       "type": "String",
-      "info": "The title of the content being shared."
+      "info": "The title of the content being shared.",
+      "required": false
     }, {
       "name": "contentDescription",
       "type": "String",
-      "info": "The description of the content being shared."
+      "info": "The description of the content being shared.",
+      "required": false
     }, {
       "name": "contentSubmittedUrl",
       "type": "String",
-      "info": "A fully qualified URL for the content being shared."
+      "info": "A fully qualified URL for the content being shared.",
+      "required": false
     }, {
       "name": "contentSubmittedImageUrl",
       "type": "String",
-      "info": "A fully qualified URL to a thumbnail image to accompany the shared content. The image should be at least 80 x 150px for best results. 2MB max filesize."
+      "info": "A fully qualified URL to a thumbnail image to accompany the shared content. The image should be at least 80 x 150px for best results. 2MB max filesize.",
+      "required": false
     }, {
       "name": "shareTargets",
       "type": "String",
-      "info": "A collection of targeting codes and values used to ensure that the shared content reaches a specific audience."
+      "info": "A collection of targeting codes and values used to ensure that the shared content reaches a specific audience.",
+      "required": false
     }],
     "callbacks": [{
       "name": "error",
@@ -336,31 +384,38 @@
     "args": [{
       "name": "accessToken",
       "type": "String",
-      "info": "Required: LinkedIn accessToken."
+      "info": "LinkedIn accessToken.",
+      "required": true
     }, {
       "name": "companyId",
       "type": "String",
-      "info": "Required: Valid Company id."
+      "info": "Valid Company id.",
+      "required": true
     }, {
       "name": "geo",
       "type": "String",
-      "info": "Segment by a particular geographic area."
+      "info": "Segment by a particular geographic area.",
+      "required": false
     }, {
       "name": "companySizes",
       "type": "String",
-      "info": "Segment by a particular company size targeting code."
+      "info": "Segment by a particular company size targeting code.",
+      "required": false
     }, {
       "name": "jobFunc",
       "type": "String",
-      "info": "Segment by member job function targeting code."
+      "info": "Segment by member job function targeting code.",
+      "required": false
     }, {
       "name": "industries",
       "type": "String",
-      "info": "Segment by member industry."
+      "info": "Segment by member industry.",
+      "required": false
     }, {
       "name": "seniorities",
       "type": "String",
-      "info": "Segment by member seniority level targeting code."
+      "info": "Segment by member seniority level targeting code.",
+      "required": false
     }],
     "callbacks": [{
       "name": "error",
@@ -375,19 +430,23 @@
     "args": [{
       "name": "accessToken",
       "type": "String",
-      "info": "Required: LinkedIn accessToken."
+      "info": "LinkedIn accessToken.",
+      "required": true
     }, {
       "name": "companyId",
       "type": "String",
-      "info": "Required: Valid Company id."
+      "info": "Valid Company id.",
+      "required": true
     }, {
       "name": "updateKey",
       "type": "String",
-      "info": "Required: The update identified."
+      "info": "The update identified.",
+      "required": true
     }, {
       "name": "comment",
       "type": "String",
-      "info": "Required: A comment by the company to associated with the share. If none of the above content parameters are provided, the comment must contain a URL to the content you want to share.  If the comment contains multiple URLs, only the first one will be analyzed for content to share."
+      "info": "A comment by the company to associated with the share. If none of the above content parameters are provided, the comment must contain a URL to the content you want to share.  If the comment contains multiple URLs, only the first one will be analyzed for content to share.",
+      "required": true
     }],
     "callbacks": [{
       "name": "error",
@@ -402,23 +461,28 @@
     "args": [{
       "name": "accessToken",
       "type": "String",
-      "info": "Required: LinkedIn accessToken."
+      "info": "LinkedIn accessToken.",
+      "required": true
     }, {
       "name": "companyId",
       "type": "String",
-      "info": "Required: Valid Company id."
+      "info": "Valid Company id.",
+      "required": true
     }, {
       "name": "timeGranularity",
       "type": "String",
-      "info": "Required: Granularity of statistics. Supported values are: `day`, `month`"
+      "info": "Granularity of statistics. Supported values are: `day`, `month`",
+      "required": true
     }, {
       "name": "startTimestamp",
       "type": "String",
-      "info": "Required: Starting timestamp of when the stats search should begin (milliseconds since epoch)."
+      "info": "Starting timestamp of when the stats search should begin (milliseconds since epoch).",
+      "required": true
     }, {
       "name": "endTimestamp",
       "type": "String",
-      "info": "Ending timestamp of when the stats search should end (milliseconds since epoch). The current time will be used if parameter not set."
+      "info": "Ending timestamp of when the stats search should end (milliseconds since epoch). The current time will be used if parameter not set.",
+      "required": false
     }],
     "callbacks": [{
       "name": "error",
@@ -433,27 +497,33 @@
     "args": [{
       "name": "accessToken",
       "type": "String",
-      "info": "Required: LinkedIn accessToken."
+      "info": "LinkedIn accessToken.",
+      "required": true
     }, {
       "name": "companyId",
       "type": "String",
-      "info": "Required: Valid Company id."
+      "info": "Valid Company id.",
+      "required": true
     }, {
       "name": "timeGranularity",
       "type": "String",
-      "info": "Required: Granularity of statistics. Supported values are: `day`, `month`"
+      "info": "Granularity of statistics. Supported values are: `day`, `month`",
+      "required": true
     }, {
       "name": "startTimestamp",
       "type": "String",
-      "info": "Required: Starting timestamp of when the stats search should begin (milliseconds since epoch)."
+      "info": "Starting timestamp of when the stats search should begin (milliseconds since epoch).",
+      "required": true
     }, {
       "name": "endTimestamp",
       "type": "String",
-      "info": "Ending timestamp of when the stats search should end (milliseconds since epoch). The current time will be used if parameter not set."
+      "info": "Ending timestamp of when the stats search should end (milliseconds since epoch). The current time will be used if parameter not set.",
+      "required": false
     }, {
       "name": "updateKey",
       "type": "String",
-      "info": "Optionally provide an update key value to return statistics for a specific company update."
+      "info": "Optionally provide an update key value to return statistics for a specific company update.",
+      "required": false
     }],
     "callbacks": [{
       "name": "error",
@@ -468,11 +538,13 @@
     "args": [{
       "name": "accessToken",
       "type": "String",
-      "info": "Required: LinkedIn accessToken."
+      "info": "LinkedIn accessToken.",
+      "required": true
     }, {
       "name": "companyId",
       "type": "String",
-      "info": "Required: Valid Company id."
+      "info": "Valid Company id.",
+      "required": true
     }],
     "callbacks": [{
       "name": "error",
