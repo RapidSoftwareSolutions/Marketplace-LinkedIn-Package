@@ -1,3 +1,6 @@
+[![](https://scdn.rapidapi.com/RapidAPI_banner.png)](https://rapidapi.com/package/LinkedIn/functions?utm_source=RapidAPIGitHub_LinkedInFunctions&utm_medium=button&utm_content=RapidAPI_GitHub)
+
+
 # LinkedIn Package
 Bring the power of the world's largest professional network to your apps
 * Domain: linkedin.com
