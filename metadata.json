@@ -14,17 +14,8 @@
   "blocks": [{
     "name": "getAccessToken",
     "description": "OAuth2",
-    "args": [{
-      "name": "code",
-      "type": "String",
-      "info": "The authorization code.",
-      "required": true
-    }, {
-      "name": "redirectUri",
-      "type": "String",
-      "info": "Application redirect url.",
-      "required": true
-    }, {
+    "args": [
+     {
       "name": "clientId",
       "type": "credentials",
       "info": "Application API Key.",
@@ -33,6 +24,16 @@
       "name": "clientSecret",
       "type": "credentials",
       "info": "The `Secret Key` value generated in prevoius OAuth step. Follow the Best Practices guide (https://developer.linkedin.com/docs/best-practices#keysecret) for handing your clientSecret value.",
+      "required": true
+    }, {
+      "name": "code",
+      "type": "String",
+      "info": "The authorization code.",
+      "required": true
+    }, {
+      "name": "redirectUri",
+      "type": "String",
+      "info": "Application redirect url.",
       "required": true
     }],
     "callbacks": [{
