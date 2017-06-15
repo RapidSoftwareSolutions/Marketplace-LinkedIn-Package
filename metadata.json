@@ -224,7 +224,8 @@
       "required": true
     }, {
       "name": "eventType",
-      "type": "String",
+      "type": "Select",
+      "options": ["job-posting","new-product","status-update"],
       "info": "Valid values are: `job-posting`, `new-product`, `status-update`.",
       "required": false
     }, {
@@ -343,7 +344,8 @@
       "required": false
     }, {
       "name": "visibilityCode",
-      "type": "String",
+      "type": "Select",
+      "options": ["anyone","connections-only"],
       "info": "One of the following values: `anyone`:  Share will be visible to all members. \n `connections-only`:  Share will only be visible to connections of the member performing the share. \nThis field is required in all sharing calls.",
       "required": false
     }, {
@@ -471,17 +473,18 @@
       "required": true
     }, {
       "name": "timeGranularity",
-      "type": "String",
+      "type": "Select",
+      "options": ["day","month"],
       "info": "Granularity of statistics. Supported values are: `day`, `month`",
       "required": true
     }, {
       "name": "startTimestamp",
-      "type": "String",
+      "type": "DatePicker",
       "info": "Starting timestamp of when the stats search should begin (milliseconds since epoch).",
       "required": true
     }, {
       "name": "endTimestamp",
-      "type": "String",
+      "type": "DatePicker",
       "info": "Ending timestamp of when the stats search should end (milliseconds since epoch). The current time will be used if parameter not set.",
       "required": false
     }],
@@ -512,12 +515,12 @@
       "required": true
     }, {
       "name": "startTimestamp",
-      "type": "String",
+      "type": "DatePicker",
       "info": "Starting timestamp of when the stats search should begin (milliseconds since epoch).",
       "required": true
     }, {
       "name": "endTimestamp",
-      "type": "String",
+      "type": "DatePicker",
       "info": "Ending timestamp of when the stats search should end (milliseconds since epoch). The current time will be used if parameter not set.",
       "required": false
     }, {

@@ -6,6 +6,7 @@
   "dependencies": {
     "body-parser": "^1.15.2",
     "express": "^4.14.0",
+    "node-datetime": "^1.0.1",
     "q": "^1.4.1",
     "rapi-js-package": "1.1.3"
   },

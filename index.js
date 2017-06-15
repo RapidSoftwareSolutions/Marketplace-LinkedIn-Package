@@ -13,6 +13,7 @@ const PORT          = process.env.PORT || 8080;
 const app           = express();
 
 const hasTree       = { 'createSharedContent': true, 'createCompanyShare' : true };
+var datetime = require('node-datetime');
 
 let mfile = fs.readFileSync('./metadata.json', 'utf-8'),
     cfile = fs.readFileSync('./control.json',  'utf-8');
@@ -50,6 +51,16 @@ for(let func in control) {
         let response;
 
         req.body.args = lib.clearArgs(req.body.args);
+
+        if(req.body.args.startTimestamp!=undefined && isNaN(req.body.args.startTimestamp)){
+            let date = datetime.create(req.body.args.startTimestamp);
+            req.body.args.startTimestamp = date.epoch();
+        }
+
+        if(req.body.args.endTimestamp!=undefined && isNaN(req.body.args.endTimestamp)){
+            let date = datetime.create(req.body.args.endTimestamp);
+            req.body.args.endTimestamp = date.epoch();
+        }
 
         try {
             let authopts = {
