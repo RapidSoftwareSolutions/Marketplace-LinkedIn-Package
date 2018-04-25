@@ -124,9 +124,9 @@
         "args": {
             "accessToken": "$!access-token",
             "companyId": "$!id",
-            "geo": "geo",
-            "companySizes": "company-sizes",
-            "jobFunc": "job-func",
+            "geo": "geos",
+            "companySizes": "companySizes",
+            "jobFunc": "jobFunc",
             "industries": "industries",
             "seniorities": "seniorities"
         }

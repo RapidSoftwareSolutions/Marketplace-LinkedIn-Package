@@ -3,7 +3,7 @@
 
 # LinkedIn Package
 Bring the power of the world's largest professional network to your apps
-* Domain: linkedin.com
+* Domain: [linkedin.com](https://www.linkedin.com/) 
 * Credentials: accessToken
 
 ## How to get credentials:

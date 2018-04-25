@@ -81,7 +81,7 @@
       "name": "comment",
       "type": "String",
       "info": "A comment by the member to associated with the share. If none of the above content parameters are provided, the comment must contain a URL to the content you want to share.  If the comment contains multiple URLs, only the first one will be analyzed for content to share.",
-      "required": true
+      "required": false
     }, {
       "name": "visibilityCode",
       "type": "String",
@@ -91,7 +91,7 @@
       "name": "contentTitle",
       "type": "String",
       "info": "The title of the content being shared.",
-      "required": true
+      "required": false
     }, {
       "name": "contentDescription",
       "type": "String",
@@ -167,12 +167,12 @@
       "required": true
     }, {
       "name": "start",
-      "type": "String",
+      "type": "Number",
       "info": "The offset value for paginating update results by.",
       "required": false
     }, {
       "name": "count",
-      "type": "String",
+      "type": "Number",
       "info": "Maximum number of updates to return.",
       "required": false
     }],
@@ -225,8 +225,8 @@
     }, {
       "name": "eventType",
       "type": "Select",
-      "options": ["job-posting","new-product","status-update"],
-      "info": "Valid values are: `job-posting`, `new-product`, `status-update`.",
+      "options": ["job-posting", "status-update"],
+      "info": "Valid values are: `job-posting`, `status-update`.",
       "required": false
     }, {
       "name": "start",
@@ -345,7 +345,7 @@
     }, {
       "name": "visibilityCode",
       "type": "Select",
-      "options": ["anyone","connections-only"],
+      "options": ["anyone"],
       "info": "One of the following values: `anyone`:  Share will be visible to all members. \n `connections-only`:  Share will only be visible to connections of the member performing the share. \nThis field is required in all sharing calls.",
       "required": false
     }, {
@@ -510,7 +510,8 @@
       "required": true
     }, {
       "name": "timeGranularity",
-      "type": "String",
+      "type": "Select",
+      "options": ["day","month"],
       "info": "Granularity of statistics. Supported values are: `day`, `month`",
       "required": true
     }, {

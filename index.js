@@ -83,14 +83,22 @@ for(let func in control) {
                 opts['grant_type'] = 'authorization_code';
                 options.isRawBody  = true;
                 authopts = {};
-            }
+						}
+
+						let oneField = req.body.args['fields'];
+						
+						if(req.body.args['fields']){
+							response            = yield new API(url, reqopts).auth(authopts).request(options);
+							r.callback          = 'success';
+							r.contextWrites[to] = response === null ? { "field": oneField } : response;
+						}
 
             if(req.body.args['profileLanguage']) 
                 reqopts.headers = {'Accept-Language': req.body.args['profileLanguage']};
 
             response            = yield new API(url, reqopts).auth(authopts).request(options);
             r.callback          = 'success';
-            r.contextWrites[to] = response === null ? 'No items.' : response;
+            r.contextWrites[to] = response === null ? { "Answer": "No items." } : response;
         } catch(e) {
             r.callback          = 'error';
             r.contextWrites[to] = e.status_code == 'REQUIRED_FIELDS' ? e : {
