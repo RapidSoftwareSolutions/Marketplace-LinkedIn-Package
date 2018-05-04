@@ -83,7 +83,7 @@ for (let func in control) {
 
    method == 'GET' ? options.query = opts : options.body = opts;
    options.method = method;
-   options.debug   = true;
+  //  options.debug   = true;
    options.hasSkip = true;
    options.hasTree = !!hasTree[func];
    //options.xml     = !!hasTree[func] ? {wrapper: 'share'} : false;
@@ -95,15 +95,16 @@ for (let func in control) {
     authopts = {};
    }
 
-   let oneField = req.body.args['fields'];
+	 if(func == 'getProfileData'){
+		url = (req.body.args['fields']) ? `https://api.linkedin.com/v1/people/~:(:fields)?format=json` : `https://api.linkedin.com/v1/people/~?format=json`
+	 }
 
-   if (req.body.args['fields']) {
-    response = yield new API(url, reqopts).auth(authopts).request(options);
-    r.callback = 'success';
-    r.contextWrites[to] = response === null ? {
-     "field": oneField
-    } : response;
-   }
+	 if(func == 'getCompanyProfile'){
+		url = (req.body.args['fields']) ? `https://api.linkedin.com/v1/companies/:id:(:fields)?format=json` : `https://api.linkedin.com/v1/companies/:id?format=json`
+	 }
+  let ok = {
+		"Answer":  "No items." 
+	}
 
    if (req.body.args['profileLanguage'])
     reqopts.headers = {
@@ -114,8 +115,11 @@ for (let func in control) {
 
    r.callback = 'success';
    r.contextWrites[to] = response === null ? {
-    "Answer": "No items."
-   } : response;
+			ok
+	 } : response;
+	 if(func == 'getCompanyFollowers' || 'checkCompanySharing' || 'checkMemberIsCompanyAdministrator'){
+		r.contextWrites[to] = {response}
+	 }
   } catch (e) {
 	 r.callback = 'error';
    r.contextWrites[to] = e.status_code == 'REQUIRED_FIELDS' ? e : {
@@ -124,7 +128,7 @@ for (let func in control) {
    };
   }
 
-  res.status(200).send(r);
+	res.status(200).send(r);
  }))
 }
 
