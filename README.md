@@ -133,9 +133,7 @@ Create a company share
 | accessToken             | String| LinkedIn accessToken.
 | companyId               | String| Valid Company id.
 | comment                 | String| A comment by the member to associated with the share. If none of the above content parameters are provided, the comment must contain a URL to the content you want to share.  If the comment contains multiple URLs, only the first one will be analyzed for content to share.
-| visibilityCode          | Select| One of the following values: `anyone`:  Share will be visible to all members. 
- `connections-only`:  Share will only be visible to connections of the member performing the share. 
-This field is required in all sharing calls.
+| visibilityCode          | Select| One of the following values: `anyone`:  Share will be visible to all members. `connections-only`:  Share will only be visible to connections of the member performing the share. 
 | contentTitle            | String| The title of the content being shared.
 | contentDescription      | String| The description of the content being shared.
 | contentSubmittedUrl     | String| A fully qualified URL for the content being shared.

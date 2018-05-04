@@ -230,12 +230,12 @@
       "required": false
     }, {
       "name": "start",
-      "type": "String",
+      "type": "Number",
       "info": "The offset value for paginating update results by.",
       "required": false
     }, {
       "name": "count",
-      "type": "String",
+      "type": "Number",
       "info": "Maximum number of updates to return.",
       "required": false
     }],
