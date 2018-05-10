@@ -94,7 +94,7 @@ This call returns a list of update events from the from the LinkedIn company pag
 |------------|-------|----------
 | accessToken| String| LinkedIn accessToken.
 | companyId  | String| Valid Company id.
-| eventType  | Select| Valid values are: `job-posting`, `new-product`, `status-update`.
+| eventType  | Select| Valid values are: `job-posting`, `status-update`.
 | start      | String| The offset value for paginating update results by.
 | count      | String| Maximum number of updates to return.
 
